@@ -1,1 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Muteba Kandulu Patrick</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header>
+    <div class="container">
+        <div class="profile-img">
+            <img src="IMG-20251126-WA0049.jpg" alt="Muteba Kandulu Patrick">
+        </div>
+        <h1 id="name"></h1>
+        <p class="tagline" id="title"></p>
+        <p id="description"></p>
+        <div class="contact-info">
+            <div class="contact-item"><i class="fas fa-envelope"></i> <span id="email"></span></div>
+            <div class="contact-item"><i class="fas fa-phone"></i> <span id="phone"></span></div>
+            <div class="contact-item"><i class="fas fa-map-marker-alt"></i> <span id="city"></span></div>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="container nav-container">
+        <a href="#" class="Patrick"></a>
+        <ul class="nav-links">
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#experience">Expérience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section id="competences">
+    <div class="container">
+        <h2>Mes Compétences</h2>
+        <div class="skills-grid" id="skills"></div>
+    </div>
+</section>
+
+<section id="projets" style="background:#f1f5f9;">
+    <div class="container">
+        <h2>Projets Récents</h2>
+        <div class="projects-grid" id="projects"></div>
+    </div>
+</section>
+
+<section id="experience">
+    <div class="container">
+        <h2>Parcours Professionnel</h2>
+        <div class="timeline" id="experience-timeline"></div>
+    </div>
+</section>
+
+<footer id="contact">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>À Propos</h3>
+                <p id="footer-about"></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> <span id="footer-email"></span></p>
+                <p><i class="fas fa-phone"></i> <span id="footer-phone"></span></p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-codepen"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Disponibilité</h3>
+                <p>Ouvert à de nouvelles opportunités</p>
+                <p>Freelance & CDI</p>
+                <p>Remote & Sur site (Paris)</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; <span id="year"></span> Muteba Kandulu Patrick. Tous droits réservés.
+        </div>
+    </div>
+</footer>
+
+<script>
+// Données JS
+const data = {
+    informations: {
+        nom:'Muteba Kandulu Patrick',
+        titre:'Développeur Front-end et Back-end',
+        email:'mutebapatrick300@gmail.com',
+        telephone:'+243 829593556',
+        ville:'Kinshasa, Kinshasa',
+        description:"Développeur passionné avec 3 ans d'expérience.",
+        annees_experience:'3+'
+    },
+    competences:[
+        {nom:'HTML Avancé', niveau:85, categorie:'Front-end'},
+        {nom:'CSS Avancé', niveau:60, categorie:'Front-end'},
+        {nom:'PHP Avancé', niveau:50, categorie:'Backend'},
+        {nom:'React.js', niveau:45, categorie:'Frontend'},
+        {nom:'Conception photo', niveau:80, categorie:'Design'},
+        {nom:'SQL', niveau:60, categorie:'Backend'},
+        
+    ],
+    projets:[
+        {titre:'Système de Réservation ', description:'Plateforme de réservation ', technologies:['PHP','React','Python','MySQL'], lien:'#'},
+        {titre:'Application de Gestion', description:'Application mobile pour suivi impact', technologies:['JS','Node.js','MongoDB','AWS'], lien:'#'},
+        {titre:'Plateforme Éducative', description:'Système apprentissage RA', technologies:['PHP','Three.js','WebGL','SQLite'], lien:'#'}
+    ],
+    experiences:[
+        {poste:' Développeur web', entreprise:'INOVA', periode:'2022 - Présent', description:'Direction équipe 5 devs'},
+        {poste:'Applicationde gestion', entreprise:'AECONGO', periode:'2020 - 2022', description:'Développement apps web'},
+        {poste:'Conception Photo', entreprise:'ODC DIGITAL', periode:'2019 - 2020', description:'Développement prototypes'}
+    ]
+};
+
+// Header & Footer
+document.getElementById('name').textContent=data.informations.nom;
+document.getElementById('title').textContent=data.informations.titre;
+document.getElementById('description').textContent=data.informations.description;
+document.getElementById('email').textContent=data.informations.email;
+document.getElementById('phone').textContent=data.informations.telephone;
+document.getElementById('city').textContent=data.informations.ville;
+document.getElementById('footer-about').textContent=`Développeur passionné avec ${data.informations.annees_experience} ans d'expérience.`;
+document.getElementById('footer-email').textContent=data.informations.email;
+document.getElementById('footer-phone').textContent=data.informations.telephone;
+document.getElementById('year').textContent=new Date().getFullYear();
+
+// Compétences
+const skillsContainer=document.getElementById('skills');
+[...new Set(data.competences.map(c=>c.categorie))].forEach(cat=>{
+    const catDiv=document.createElement('div'); catDiv.className='skill-category';
+    const h3=document.createElement('h3'); h3.textContent=cat; catDiv.appendChild(h3);
+    data.competences.filter(c=>c.categorie===cat).forEach(skill=>{
+        const skillDiv=document.createElement('div'); skillDiv.className='skill-item';
+        skillDiv.innerHTML=`
+            <div class="skill-header"><span>${skill.nom}</span><span>${skill.niveau}%</span></div>
+            <div class="skill-bar"><div class="skill-level" style="width:${skill.niveau}%"></div></div>
+        `;
+        catDiv.appendChild(skillDiv);
+    });
+    skillsContainer.appendChild(catDiv);
+});
+
+// Projets
+const projectsContainer=document.getElementById('projects');
+data.projets.forEach(proj=>{
+    const projDiv=document.createElement('div'); projDiv.className='project-card';
+    projDiv.innerHTML=`
+        <div class="project-img"><i class="fas fa-project-diagram"></i></div>
+        <div class="project-content">
+            <h3>${proj.titre}</h3>
+            <p>${proj.description}</p>
+            <div class="tech-tags">${proj.technologies.map(t=>`<span class="tech-tag">${t}</span>`).join('')}</div>
+            <a href="${proj.lien}" class="btn" style="display:inline-block;margin-top:20px;color:var(--primary-color);text-decoration:none;font-weight:bold;">
+            Voir le projet <i class="fas fa-arrow-right"></i></a>
+        </div>
+    `;
+    projectsContainer.appendChild(projDiv);
+});
+
+// Expérience
+const expContainer=document.getElementById('experience-timeline');
+data.experiences.forEach(exp=>{
+    const expDiv=document.createElement('div'); expDiv.className='timeline-item';
+    expDiv.innerHTML=`
+        <div class="timeline-content">
+            <h3>${exp.poste}</h3>
+            <h4 style="color:var(--primary-color); margin:10px 0;">${exp.entreprise}</h4>
+            <p style="color:var(--gray-color); margin-bottom:15px;">${exp.periode}</p>
+            <p>${exp.description}</p>
+        </div>
+    `;
+    expContainer.appendChild(expDiv);
+});
+
+// Smooth scroll
+document.querySelectorAll('nav a').forEach(a=>{
+    a.addEventListener('click',e=>{
+        e.preventDefault();
+        const target=document.querySelector(a.getAttribute('href'));
+        if(target) window.scrollTo({top:target.offsetTop-80, behavior:'smooth'});
+    });
+});
+</script>
+
+</body>
+</html>
